@@ -1,0 +1,25 @@
+# Dependencies and Netlify local state
+node_modules/
+.netlify/
+deno.lock
+
+# Secrets
+.env
+.env.*
+!.env.example
+passcode.txt
+
+# Study data and exports
+study-bundle.json
+!examples/study-bundle.json
+pairs.json
+data/*
+!data/.gitkeep
+responses/*
+!responses/.gitkeep
+private/
+
+# Python and operating-system artifacts
+__pycache__/
+*.py[cod]
+.DS_Store

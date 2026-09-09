@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "study": {
+    "id": "example-audit-response-study",
+    "title": "Example Audit Response Rating Study",
+    "description": "For each organization, compare two synthetic responses shown in random order. Select the response you prefer and explain why.",
+    "participant_prompt": "Enter your rater ID",
+    "participant_help": "Use the exact same ID if you return later so the app can restore your progress.",
+    "participant_placeholder": "e.g., rater-01",
+    "item_term": "organization",
+    "item_term_plural": "organizations",
+    "comparison_instructions": "Both messages are synthetic examples from the same organization. Read both before rating them.",
+    "left_heading": "RESPONSE ON THE LEFT",
+    "right_heading": "RESPONSE ON THE RIGHT",
+    "rating_question": "Which response is more helpful?",
+    "reason_question": "Why is the response you preferred more helpful?",
+    "reason_help": "Check all that apply.",
+    "require_reason_when_non_neutral": true,
+    "other_reason_key": "other",
+    "other_prompt": "Briefly explain the other reason:",
+    "completion_title": "Rating complete",
+    "completion_message": "Your responses were saved successfully.",
+    "accent_color": "#2f5e9e",
+    "rating_scale": [
+      {
+        "value": -2,
+        "label": "Strongly prefer left",
+        "export_label": "strongly prefer left"
+      },
+      {
+        "value": -1,
+        "label": "Prefer left",
+        "export_label": "prefer left"
+      },
+      {
+        "value": 0,
+        "label": "No preference",
+        "export_label": "no preference"
+      },
+      {
+        "value": 1,
+        "label": "Prefer right",
+        "export_label": "prefer right"
+      },
+      {
+        "value": 2,
+        "label": "Strongly prefer right",
+        "export_label": "strongly prefer right"
+      }
+    ],
+    "reasons": [
+      {
+        "key": "friendliness",
+        "label": "Friendlier tone"
+      },
+      {
+        "key": "more_details",
+        "label": "Provides more useful details"
+      },
+      {
+        "key": "explained_process",
+        "label": "Explains the next steps"
+      },
+      {
+        "key": "facilitated_action",
+        "label": "Makes the requested action easier"
+      },
+      {
+        "key": "other",
+        "label": "Other"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "example-001",
+      "label": "Example Organization 1",
+      "metadata": {
+        "organization_type": "Synthetic school",
+        "site_code": "S001"
+      },
+      "versions": [
+        {
+          "id": "A",
+          "label": "Treatment A",
+          "content": "Thank you for contacting us. You can submit the application online. Let us know if you have questions."
+        },
+        {
+          "id": "B",
+          "label": "Treatment B",
+          "content": "Thank you for reaching out. To apply, complete the online form and upload proof of address and identification. Our office can help at any step."
+        }
+      ]
+    },
+    {
+      "id": "example-002",
+      "label": "Example Organization 2",
+      "metadata": {
+        "organization_type": "Synthetic program",
+        "site_code": "S002"
+      },
+      "versions": [
+        {
+          "id": "A",
+          "label": "Treatment A",
+          "content": "We received your message. Registration information is available on our website."
+        },
+        {
+          "id": "B",
+          "label": "Treatment B",
+          "content": "Welcome. Registration begins with the online form. After submission, a staff member will contact you within two business days to review the required documents."
+        }
+      ]
+    }
+  ]
+}

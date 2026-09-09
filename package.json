@@ -1,0 +1,21 @@
+{
+  "name": "audit-responses-rating-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable pairwise rating app for audit-study responses",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "test": "node --test && python3 -m unittest discover -s test -p 'test_*.py'",
+    "build:example": "python3 scripts/build-study.py --config examples/study-config.json --items examples/items.csv --output examples/study-bundle.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^27.5.1"
+  }
+}

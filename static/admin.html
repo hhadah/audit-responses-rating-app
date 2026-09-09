@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rating App Administration</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body>
+  <main class="wrap admin-wrap">
+    <h1>Rating App Administration</h1>
+    <p class="sub">Upload a study configuration, inspect collection status, and export private response data.</p>
+
+    <section class="card admin-card">
+      <label for="adminPasscode">Administrator passcode</label>
+      <p class="hint">Use <code>ADMIN_PASSCODE</code>. Existing deployments that only define <code>PASSCODE</code> use that value for both roles.</p>
+      <input type="password" id="adminPasscode" autocomplete="current-password">
+      <button type="button" id="statusButton">Load status</button>
+      <div class="message" id="statusMessage" role="status"></div>
+      <div class="status-grid hidden" id="statusGrid">
+        <div><div class="status-value" id="itemCount">0</div><div class="status-label">Items</div></div>
+        <div><div class="status-value" id="participantCount">0</div><div class="status-label">Participants</div></div>
+        <div><div class="status-value" id="responseCount">0</div><div class="status-label">Saved responses</div></div>
+      </div>
+    </section>
+
+    <section class="card admin-card">
+      <h2>Upload study bundle</h2>
+      <p class="hint">Choose the JSON bundle produced by <code>scripts/build-study.py</code>. Study inputs remain in private Netlify Blob storage and are not committed to the public repository.</p>
+      <input type="file" id="bundleFile" accept=".json,application/json">
+      <label style="display: flex; gap: 8px; align-items: flex-start; margin-top: 14px; font-weight: 500">
+        <input type="checkbox" id="replaceConfirmation" style="margin-top: 4px">
+        I downloaded the existing CSV and JSON backups and understand that this replaces the active study configuration. Existing responses are not deleted.
+      </label>
+      <button type="button" id="uploadButton">Upload study bundle</button>
+      <div class="message" id="uploadMessage" role="status"></div>
+    </section>
+
+    <section class="card admin-card">
+      <h2>Download responses</h2>
+      <p class="hint">The CSV is analysis-ready. The JSON backup contains the active study bundle and raw response store; retain both.</p>
+      <div class="admin-actions">
+        <button type="button" id="downloadCsvButton">Download responses.csv</button>
+        <button type="button" id="downloadJsonButton" class="secondary">Download JSON backup</button>
+      </div>
+      <div class="message" id="downloadMessage" role="status"></div>
+    </section>
+
+    <p class="hint"><a href="/">Return to participant app</a></p>
+  </main>
+</body>
+</html>

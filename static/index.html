@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audit Response Rating Study</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="wrap">
+    <h1 id="studyTitle">Audit Response Rating Study</h1>
+    <p class="sub" id="studyDescription">Loading the study configuration...</p>
+
+    <section id="nameScreen" class="card" aria-labelledby="participantPrompt">
+      <p class="question-title" id="participantPrompt">Before we start, what is your name or rater ID?</p>
+      <p class="hint" id="participantHelp">Use the exact same value to resume a previous session.</p>
+      <input type="text" id="participantId" placeholder="Rater name or ID" autocomplete="name">
+
+      <div id="passcodeRow" class="hidden" style="margin-top: 12px">
+        <label for="passcode">Study passcode</label>
+        <p class="hint">Provided by the research team.</p>
+        <input type="password" id="passcode" placeholder="Passcode" autocomplete="current-password">
+      </div>
+
+      <div class="message error" id="startError" role="alert"></div>
+      <div style="margin-top: 14px"><button id="startButton" type="button">Start / Continue</button></div>
+    </section>
+
+    <section id="ratingScreen" class="hidden" aria-live="polite">
+      <div class="topbar">
+        <span class="pill" id="participantPill"></span>
+        <div class="progressbar" aria-label="Study progress"><div id="progressFill"></div></div>
+        <span class="ptext" id="progressText"></span>
+      </div>
+
+      <div class="card">
+        <p class="question-title" id="itemTitle"></p>
+        <p class="hint" id="comparisonInstructions"></p>
+        <div class="comparisons">
+          <article class="comparison">
+            <h3 id="leftHeading">RESPONSE ON THE LEFT</h3>
+            <pre id="leftContent"></pre>
+          </article>
+          <article class="comparison">
+            <h3 id="rightHeading">RESPONSE ON THE RIGHT</h3>
+            <pre id="rightContent"></pre>
+          </article>
+        </div>
+      </div>
+
+      <fieldset class="card" style="border: 1px solid var(--border)">
+        <legend class="question-title" id="ratingQuestion">Which response do you prefer?</legend>
+        <div class="rating-options" id="ratingOptions"></div>
+        <div class="rating-ends">
+          <span>Response on the left</span>
+          <span>Response on the right</span>
+        </div>
+      </fieldset>
+
+      <fieldset class="card" id="reasonsCard" style="border: 1px solid var(--border)">
+        <legend class="question-title" id="reasonQuestion">Why is the response you preferred better?</legend>
+        <p class="hint" id="reasonHelp"></p>
+        <div class="reasons" id="reasonOptions"></div>
+        <div id="otherBox" class="hidden" style="margin-top: 10px">
+          <label for="otherText" id="otherPrompt">Please explain:</label>
+          <textarea id="otherText" rows="2"></textarea>
+        </div>
+      </fieldset>
+
+      <nav class="nav" aria-label="Rating navigation">
+        <button class="secondary" id="previousButton" type="button">Previous</button>
+        <span class="saved" id="savedMessage" role="status">Saved</span>
+        <div class="nav-actions">
+          <button class="secondary" id="skipButton" type="button">Skip for now</button>
+          <button id="nextButton" type="button">Save &amp; Next</button>
+        </div>
+      </nav>
+      <div class="message error" id="ratingError" role="alert"></div>
+    </section>
+
+    <section id="doneScreen" class="card done hidden">
+      <h2 id="completionTitle">All done — thank you!</h2>
+      <p id="completionSummary"></p>
+      <p class="hint" id="completionMessage">Your answers have been saved.</p>
+      <button class="secondary" id="reviewButton" type="button">Review my answers</button>
+    </section>
+  </main>
+</body>
+</html>
