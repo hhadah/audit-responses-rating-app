@@ -44,29 +44,48 @@ The public readiness endpoint should eventually report:
 
 A response with `"ready": false` or `"study_title": null` means setup is incomplete.
 
-## Configure environment variables
+## Add the participant passcode in Netlify
 
-Open the [environment-variable settings](https://app.netlify.com/projects/resonant-horse-fdc798/configuration/env). Confirm that the following variables exist and have different values:
+The administrator passcode does not authorize the participant interface. This site also needs a separate environment variable named exactly `PARTICIPANT_PASSCODE`.
 
-```text
-ADMIN_PASSCODE
-PARTICIPANT_PASSCODE
-```
+Do not change the existing `ADMIN_PASSCODE`. Add the participant variable as follows:
 
-- `ADMIN_PASSCODE` is private to the research team. It protects the status, upload, and export endpoints.
-- `PARTICIPANT_PASSCODE` is the value distributed to raters. It only authorizes the participant workflow.
+1. Sign in to Netlify.
+2. Open the [`resonant-horse-fdc798` environment-variable page](https://app.netlify.com/projects/resonant-horse-fdc798/configuration/env).
+3. Click **Add a variable**. If Netlify offers a choice, select **Add a single variable**.
+4. Enter this exact key:
 
-Select **All deploy contexts** if Netlify requests a scope. After adding or changing either variable, open [Deploys](https://app.netlify.com/projects/resonant-horse-fdc798/deploys) and select **Trigger deploy → Deploy site**.
+   ```text
+   PARTICIPANT_PASSCODE
+   ```
 
-Generate strong passcodes locally if needed:
+5. Enter the passcode that will be distributed to raters in the **Value** field. It must be different from `ADMIN_PASSCODE`.
+6. Select **All deploy contexts**. If the interface instead lists individual contexts, enable at least **Production**.
+7. Leave secret-value handling enabled if Netlify offers it.
+8. Click **Create variable** or **Save**.
+9. Open the [Deploys page](https://app.netlify.com/projects/resonant-horse-fdc798/deploys).
+10. Select **Trigger deploy → Deploy site** and wait until the production deployment reports **Published** or **Ready**.
+
+Environment-variable changes require a new deployment because the Netlify Function reads the passcodes from its runtime environment.
+
+After deployment, open the [participant app](https://resonant-horse-fdc798.netlify.app/) in a private browser window and enter the new participant passcode with a temporary rater ID. Confirm that authentication succeeds, but do not click **Save & Next** on a production study merely to test login.
+
+The [readiness endpoint](https://resonant-horse-fdc798.netlify.app/api/config) will continue to report `"ready": false` until both of these are true:
+
+1. `PARTICIPANT_PASSCODE` is configured in the deployed environment; and
+2. an administrator has uploaded a valid study bundle.
+
+Therefore, adding the passcode alone will not make the site ready when `"study_title"` is still `null`. Complete the study-bundle upload described below.
+
+Generate a strong passcode locally if needed:
 
 ```bash
 openssl rand -hex 24
 ```
 
-Store both values in a password manager. Never commit them to Git, add them to a study bundle, or include the administrator value in participant instructions.
+Store the participant and administrator values in a password manager. Never commit them to Git, add them to a study bundle, or include the administrator value in participant instructions.
 
-For a new deployment, do not define the legacy `PASSCODE` variable. It exists only to keep older deployments compatible with the reusable code.
+For this new deployment, do not define the legacy `PASSCODE` variable. It exists only to keep older deployments compatible with the reusable code.
 
 ## Prepare a study configuration
 
