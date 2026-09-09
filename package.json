@@ -5,7 +5,7 @@
   "description": "Reusable pairwise rating app for audit-study responses",
   "type": "module",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "netlify dev --offline",
     "test": "node --test && python3 -m unittest discover -s test -p 'test_*.py'",
     "build:example": "python3 scripts/build-study.py --config examples/study-config.json --items examples/items.csv --output examples/study-bundle.json"
   },

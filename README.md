@@ -101,11 +101,13 @@ Generate the synthetic example bundle:
 npm run build:example
 ```
 
-Start Netlify's local runtime:
+Start Netlify's local runtime in offline mode; local development does not require a Netlify login:
 
 ```bash
 npm run dev
 ```
+
+The development script uses `.env` and Netlify's local Blob sandbox without fetching project settings from the Netlify API. Deployment commands still require an authenticated Netlify account.
 
 Netlify normally opens <http://localhost:8888>. Then:
 
