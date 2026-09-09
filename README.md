@@ -4,6 +4,10 @@ A reusable web application for collecting blinded, pairwise ratings of responses
 
 The application is designed for Netlify. The front end is static, the API runs as a Netlify Function, and private study inputs and submitted ratings are stored in Netlify Blobs rather than Git.
 
+## Study setup guides
+
+- [`resonant-horse-fdc798` setup and operations runbook](docs/resonant-horse-study-setup.md): environment variables, study preparation, activation, participant distribution, response exports, and troubleshooting for the new Netlify site.
+
 ## Current production deployment
 
 This repository is the standalone source for the existing school-email rating study.
